@@ -1,0 +1,86 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{amsmath,amssymb}
+\usepackage{microtype}
+\setlist[itemize]{topsep=2pt,itemsep=2pt}
+\setlist[enumerate]{topsep=4pt,itemsep=4pt}
+\usepackage[numbers]{natbib}
+\usepackage{graphicx}
+\definecolor{Reviewer1Color}{RGB}{255,0,0}
+
+% Formatting helpers for comments and responses
+\newcommand{\excomment}[1]{%
+  \par\noindent\textbf{Reviewer's comment:}~\emph{#1}\par\vspace{0.25em}
+}
+\newcommand{\exresponse}[1]{%
+  \par\noindent\textbf{My response:}~#1\par\vspace{0.75em}
+}
+
+	\title{Response to Reviewer\\[4pt]\large Geometric and Statistical Characterisation of the Turbulent/Non-Turbulent Interface in a Turbulent Boundary Layer Flow Identified Using Uniform Momentum Zone Concept}
+\author{Bihai Sun, Callum Atkinson and Julio Soria}
+\date{\today}
+
+\begin{document}
+\maketitle
+\section*{Overview}
+We thank the reviewer for the time and effort devoted to evaluating our manuscript, and for the insightful suggestions and constructive comments. The paper has been revised accordingly. Below, we address each point in turn and specify the corresponding clarifications and modifications made in the text.
+
+
+\section*{Responses}
+\subsection*{Reviewer Point 1}
+\excomment{The TNTI has a very specific definition; there is in fact no arbitrariness in defining it, although its definition is sensitive to noise, either due to experimentation or machine precision. It is clearly defined as a surface of zero vorticity magnitude and demarcates rotational (turbulent) fluid from irrotational (non-turbulent) fluid. No matter which metric is adopted to identify the TNTI, this definition is inalienable and therefore affects the physics associated with the identified TNTI. For example, the behaviour of entrainment, which is referred to in the paper, will depend on the definition of the interface that is studied. It is a known fact that all turbulent flows entrain from a non-turbulent background, yielding boundary-layer growth with streamwise distance. Entrainment requires fluid to be transported firstly towards the TNTI from the freestream, and then once this fluid has crossed the TNTI, it must be transported into the boundary layer where it is mixed into the turbulent bulk. This behaviour is perfectly illustrated in figure~3(b) for the TNTI identified using the vorticity threshold—consistent negative wall-normal velocity in the vicinity of the TNTI, with an entrainment velocity of $V=-0.05 u_\tau$ which seems like a reasonable value. Such behaviour is not observed when the TNTI is defined either by the TKE method or the UMZ method. This is hardly surprising: if one considers the definition of a TNTI, then it is not an iso-surface of uniform streamwise velocity (or TKE), and hence these surfaces are not the TNTI. The statement at the end of the paper that this UMZ method is ``a better diagnostic tool for entrainment and mixing’’ is therefore simply not true.}
+
+\exresponse{
+We thank the reviewer for this detailed comment. However, we respectfully disagree with the assertion that the TNTI has a single, unambiguous definition, as implied by the statement ``\textit{The TNTI has a very specific definition}’’ and ``\textit{It is clearly defined as a surface of zero vorticity magnitude and demarcates rotational (turbulent) fluid from irrotational (non-turbulent) fluid. No matter which metric is adopted to identify the TNTI, this definition is inalienable.}’’ These views do not align with the diversity of definitions reported in the literature. Multiple approaches exist to identify the turbulent/non-turbulent interface, and no universally accepted equivalence among them has been established. In addition to the vorticity or enstrophy threshold criterion mentioned by the reviewer, other widely used definitions include passive scalar criteria \cite{Prasad_1989,Westerweel_2005,Westerweel2009,Holzner_2006,Mistry_2016}, local turbulent kinetic energy (TKE) criteria \cite{Chauhan2014a,Philip_2014,deSilva2016,Saxton_Fox_2017,Reuther_2018}, and machine-learning-based methods that combine multiple physical quantities to delineate the interface \cite{Wu_2019,Younes_2021,Khojasteh_2024}. The review by \citet{daSilva2014} on TNTIs explicitly recognises both vorticity-based and TKE-based definitions as valid. We therefore do not share the reviewer’s view that the TNTI is uniquely defined by a zero-vorticity surface.
+
+Regarding entrainment, the mass flux across the interface depends not only on the mean wall-normal velocity at the TNTI but also on the streamwise evolution of its mean height. The entrainment mass flux can be expressed as
+\begin{equation}
+\frac{\mathrm{d} \dot{M}}{\mathrm{d} x}
+ = \rho \left[ \tilde{U} \frac{\mathrm{d} y_{\mathrm{i}}}{\mathrm{d} x} - \tilde{V} \right],
+\end{equation}
+indicating that the net entrainment of mass into the turbulent region can remain positive even if the mean wall-normal velocity at the interface is negative.
+}
+
+\subsection*{Reviewer Point 2}
+\excomment{This leads to my second point—a paper was published earlier this year that used an extremely similar UMZ-based method to ``identify’’ the TNTI. For the reasons outlined above, they were, however, careful not to ascribe the outermost UMZ iso-velocity contour as the turbulent/turbulent interface (TTI) or TNTI (various cases of freestream turbulence were also used). It is therefore not accurate to state (as this paper does) that the authors have introduced this UMZ-based method for TNTI detection. See Asadi, Bullee \& Hearst (2025), \textit{J. Fluid Mech.} \textbf{1005}, A2.}
+
+\exresponse{
+We thank the reviewer for bringing the work of \citet{Asadi2025} to our attention. While that study indeed employed a velocity-contour-based approach to locate the TNTI, their method differs fundamentally from the present one. In \citet{Asadi2025}, the edge velocity was defined as a single, global threshold applied uniformly along the streamwise direction, and it was not determined from the uniform momentum zones (UMZs) extracted from the instantaneous velocity probability density function. In contrast, our approach determines the interface velocity locally from the UMZ distribution, allowing the edge velocity to vary with streamwise position. This distinction is particularly important in direct numerical simulations (DNS) where the streamwise domain exceeds $10\delta$, since the characteristic velocity of the turbulent-side UMZ changes with streamwise distance. Hence, the present method extends the UMZ-based framework by introducing a streamwise-dependent interface velocity, which is necessary for accurately identifying the TNTI in spatially developing flows.
+}
+
+\subsection*{Reviewer Point 3}
+\excomment{The Reynolds stresses in the interfacial region need to be better described, as there are two possible definitions for the velocity fluctuations and there will (I suspect) be a big difference in the results depending on which definition is chosen. The fluctuations can either be defined as $| u' = u - \overline{u} (y) |$, i.e. the mean is defined as a function of wall-normal distance, or it can be defined as $| u' = u -  \overline{u} (\tilde{y}) |$, i.e. the mean as a function of distance from the TNTI. My suspicion is that the former has been used, but this can be misleading since if a data point is just below the TNTI location then it will be part of the boundary layer, whilst if it is just above the TNTI it will be in the freestream, even though both locations would have the same mean velocity when defined as a function of wall-normal distance.
+}
+
+\exresponse{
+We thank the reviewer for this insightful comment. Strictly speaking, conditional turbulent statistics should indeed be computed relative to the interface-normal direction rather than the wall-normal direction. However, in the present study, the interface is approximately parallel to the wall and in the mean, grows only slowly in the streamwise direction. Consequently, the interface-normal and wall-normal directions are closely aligned, and the difference between the two definitions is negligible. This alignment has also been discussed by \citet{Chauhan2014b}. To quantify this, we computed the probability density function (PDF) of the cosine of the angle between the interface-normal vector and the wall-normal ($y$) direction, shown in figure~\ref{fig:cosine_pdf}. A value of 1 indicates an interface locally parallel to the wall and facing upward, 0 corresponds to a vertical orientation, and –1 represents a downward-facing interface parallel to the wall. The PDF is strongly peaked near 1, demonstrating that the interface is predominantly aligned with the wall-normal direction. Therefore, using the wall-normal coordinate in computing the conditional statistics introduces negligible differences.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=4in]{interface_angle_pdf.pdf}
+  \caption{Probability density function of the cosine of the angle between the interface-normal and wall-normal directions. A value of 1 indicates the interface is parallel to the wall and facing upward.}
+  \label{fig:cosine_pdf}
+\end{figure}
+}
+
+
+\subsection*{Reviewer Point 4}
+\excomment{ Other comments:
+\begin{itemize}
+  \item Figure~7(b) is missing.
+  \item The caption to figure~9 is incorrect.
+\end{itemize}
+}
+
+\exresponse{
+We have fixed the typological and presentation errors in the paper, including the ones pointed out by the reviewer.   }
+
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+\end{document}

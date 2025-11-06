@@ -1,0 +1,95 @@
+
+
+\usepackage{acronym}
+\usepackage{bm}% bold math
+\usepackage{graphicx} % For including graphics
+\usepackage{subcaption} % For subfigure support
+
+
+\usepackage{placeins}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{layouts}
+\usepackage{xspace}
+
+% Automatically add \centering to all figure environments
+\usepackage{etoolbox}
+\makeatletter
+\g@addto@macro\@floatboxreset\centering
+\makeatother
+
+
+\graphicspath{{figures}}
+\captionsetup[figure]{justification=centerlast} 
+
+\acrodef{2C-2D}[2C\allowbreak-2D]{two–component – two–dimensional}
+\acrodef{APG}[APG]{adverse pressure gradient}
+\acrodef{CDF}[CDF]{cumulative distribution function}
+\acrodef{DNS}[DNS]{direct numerical simulation}
+\acrodef{FOV}[FOV]{field of view}
+\acrodef{FPG}[FPG]{favourable pressure gradient}
+\acrodef{HSR}[HSR]{high–spatial–resolution}
+\acrodef{HWA}[HWA]{hot–wire anemometry}
+\acrodef{LIF}[LIF]{laser–induced fluorescence}
+\acrodef{PDF}[PDF]{probability density function}
+\acrodef{PIV}[PIV]{particle image velocimetry}
+\acrodef{ROI}[ROI]{region of interest}
+\acrodef{SS-APG-TBL}[SS\allowbreak–APG\allowbreak–TBL]{self–similar adverse pressure gradient turbulent boundary layer}
+\acrodef{TBL}[TBL]{turbulent boundary layer}
+\acrodef{TKE}[TKE]{turbulent kinetic energy}
+\acrodef{TNTI}[TNTI]{turbulent/non–turbulent interface}
+\acrodef{UMZ}[UMZ]{uniform momentum zone}
+\acrodef{ZPG}[ZPG]{zero pressure gradient}
+
+
+
+\newcommand{\fref}[1]{figure \ref{#1}}
+\newcommand{\Fref}[1]{Figure \ref{#1}}
+\newcommand{\tref}[1]{table \ref{#1}}
+\newcommand{\Tref}[1]{Table \ref{#1}}
+\newcommand{\eref}[1]{equation \ref{#1}}
+\newcommand{\Eref}[1]{Equation \ref{#1}}
+\newcommand{\sref}[1]{section \ref{#1}}
+\newcommand{\Sref}[1]{Section \ref{#1}}
+
+\definecolor{plt1}{RGB}{31, 119, 180}
+\definecolor{plt2}{RGB}{255, 127, 14}
+\definecolor{plt3}{RGB}{44, 160, 44}
+\definecolor{plt4}{RGB}{214, 39, 40}
+\definecolor{plt5}{RGB}{148, 103, 189}
+\definecolor{plt6}{RGB}{140, 86, 75}
+\definecolor{red}{RGB}{255, 0, 0}
+\definecolor{blue}{RGB}{0, 0, 255}
+\definecolor{black}{RGB}{0,0,0}
+\definecolor{laser532Green}{RGB}{101, 255, 0}
+\definecolor{laser457Blue}{RGB}{0, 108, 255}
+\definecolor{laser633Red}{RGB}{255, 66, 0}
+
+
+\DeclareRobustCommand\dashed{\tikz[baseline=-0.6ex] \draw[thick,dash pattern=on 3pt off 3pt] (0,0)--(15pt,0);\xspace}
+\DeclareRobustCommand\dotdash{\tikz[baseline=-0.6ex]\draw[thick, dash pattern=on 1pt off 2pt on 4pt off 2pt] (0,0)--(15pt,0);\xspace}
+
+
+\DeclareRobustCommand\line{\tikz[baseline=-0.6ex]\draw[thick] (0,0)--(15pt,0);\xspace}
+\DeclareRobustCommand\solidCircle[1]{\tikz[baseline=-0.6ex]\draw[#1,fill=#1,radius=0.25em] (0,0) circle ;}
+\DeclareRobustCommand\lineCircle[1]{\tikz[baseline=-0.6ex] \draw[#1,fill=#1,thick] 
+    (-0.75em,0) -- (0,0) 
+    (0,0) circle[radius=0.25em] 
+    (0,0) -- (0.75em,0);\xspace
+}
+\DeclareRobustCommand\lineSquare[1]{\tikz[baseline=-0.6ex] \draw[#1,fill=#1,thick] 
+    (-0.75em,0) -- (0,0) 
+    (-0.25em,-0.25em) rectangle (0.25em,0.25em)  
+    (0,0) -- (0.75em,0);\xspace
+}
+\DeclareRobustCommand\lineTriangle[1]{\tikz[baseline=-0.6ex] \draw[#1,fill=#1,thick] 
+    (-0.75em,0) -- (0,0) 
+    (-0.25em,-0.2165em) -- (0.25em,-0.2165em) -- (0em,0.2887em) -- cycle  
+    (0,0) -- (0.75em,0);\xspace
+}
+\newcommand{\lineBreakCell}[2][c]{%
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+  

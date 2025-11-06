@@ -1,0 +1,421 @@
+\documentclass{iopconfser}
+\usepackage{booktabs}
+\usepackage[numbers]{natbib}
+\usepackage{xcolor}
+\definecolor{Reviewer1Color}{RGB}{255,0,0}
+
+
+\input{LATEX_headers.tex} %personal headers include definition of Acronyms, colors and symbols for figure caption
+
+\begin{document}
+
+\title{Geometric and Statistical Characterisation of the Turbulent/Non-Turbulent Interface in a Turbulent
+Boundary Layer Flow Identified Using Uniform Momentum Zone Concept}
+
+\author{Bihai Sun, Callum Atkinson and Julio Soria}
+
+\affil{Laboratory for Turbulence Research in Aerospace \& Combustion (LTRAC),\\ Department of Mechanical and Aerospace Engineering,\\ Monash University, Victoria 3800, Australia}
+
+\email{bihai.sun@monash.edu}
+
+\begin{abstract}
+The turbulent/non-turbulent interface (TNTI) is essential in the entrainment and mixing in boundary-layer flows, yet its identification remains challenging due to the reliance on subjective thresholds for conventional methods. This study introduces a novel, threshold-free methodology for detecting the TNTI using the uniform momentum zone (UMZ) concept, which is demonstrated in a zero-pressure-gradient turbulent boundary layer. Direct numerical simulation data up to $Re_\tau \approx 2{,}000$ are analysed. A sliding-window probability density function of streamwise velocity is used to identify the outermost UMZ boundary, corresponding to the TNTI. Results show that the mean TNTI height and its standard deviation scale with boundary layer thickness and follow a Gaussian distribution. Intermittency profiles collapse to error-function behaviour, consistent with prior investigations. Conditionally averaged velocity and vorticity fields demonstrate that the TNTI behaves as a thin shear layer characterised by sharp velocity jumps and strong gradients, and suggest local TNTI velocity and length scales. Reynolds stress profiles across the interface collapse across Reynolds numbers under this scaling, with the streamwise component most strongly altered by TNTI and the spanwise component the least. The mean spanwise vorticity profile also collapses well across Reynolds numbers, with a localised peak concentrated at the interface.
+\end{abstract}
+\section{Introduction}
+
+\Acp{TBL} involve a continuous exchange of momentum and scalar quantities between the near-wall turbulent region and the free stream. This transfer occurs across the \ac{TNTI}, which is a thin, convoluted layer of intense vorticity and shear \cite{daSilva2014}. The \ac{TNTI} plays a fundamental role in turbulent entrainment, but its detection is challenging because of strong intermittency and complex geometry.
+
+\textcolor{Reviewer1Color}{A variety of definitions for the \ac{TNTI} have been proposed in the literature, and no single criterion is universally accepted. In addition to the commonly used vorticity- or enstrophy-based thresholds \citep{Westerweel_2005,Westerweel2009,daSilva2014}, alternative formulations include passive scalar criteria \citep{Prasad_1989,Holzner_2006,Mistry_2016}, local turbulent kinetic energy (TKE) thresholds \citep{Chauhan2014,deSilva2016,Saxton_Fox_2017,Reuther_2018}, and more recent data-driven approaches that combine multiple physical quantities \citep{Wu_2019,Younes_2021,Khojasteh_2024}. 
+These methods have advanced understanding of TNTI dynamics but face two main limitations: the chosen threshold is often arbitrary and can strongly influence the outcome, and experimental applicability is restricted by spatial resolution and measurement noise. Such difficulties complicate comparisons across studies and reduce the reliability of purely threshold-based definitions \cite{Anand2009}.}
+
+In parallel, the study of \acp{UMZ} has provided new insight into the large-scale organisation of turbulent boundary layers \cite{Adrian2000}. UMZ boundaries can be detected from peaks in streamwise-velocity \acp{PDF}, and they exhibit velocity jumps reminiscent of those observed across the \ac{TNTI} \cite{Thavamani2020}. This conceptual similarity motivates the use of UMZs to identify the TNTI without reliance on empirical thresholds.
+
+The present study introduces a UMZ-based methodology for TNTI detection in a zero-pressure-gradient turbulent boundary layer. The method applies a sliding-window \ac{PDF} analysis of the streamwise velocity and defines the TNTI as the outermost UMZ boundary. This approach enables a consistent characterisation of interface geometry and intermittency without empirical thresholds. The paper first describes the UMZ-based method, then analyses the geometric properties of the identified interface and compares them with established results, and finally examines conditionally averaged velocity, Reynolds stresses, and vorticity profiles relative to the TNTI to highlight the shear-layer-like dynamics of this region.
+
+
+
+
+\section{UMZ-TNTI Methodology}
+
+The present study uses a direct numerical simulation of a zero-pressure-gradient turbulent boundary layer at a friction Reynolds number up to $Re_\tau \approx 2,000$. The details of the simulation, as well as the validation against experiments and other simulations of the same condition, can be found in Sillero et al. \cite{Sillero2013}. The key parameters and characteristics of the simulation are summarised in \tref{tbl:DNS_details}.
+
+\begin{table}[ht!]
+  \centering
+  \caption{Summary of important simulation parameters for the DNS dataset. 
+  Here $N_x$, $N_y$, and $N_z$ denote the grid size in each direction. 
+  The Taylor-microscale Reynolds number $Re_\lambda$, the Kolmogorov length $\eta$, 
+  and the Taylor microscale $\lambda$ are estimated at $y=0.6\delta$.}
+  \label{tbl:DNS_details}
+  \begin{tabular}{ccccccc}
+    \toprule
+    $N_x$ & $N_y$ & $N_z$ & $Re_\tau$ & $Re_\lambda$ & $\delta / \eta$ & $\delta / \lambda$ \\
+    \midrule
+    15,361 & 535 & 4,096 & 1,000--2,000 & 75--108 & 242--440 & 14.2--21.4 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+In the process of identifying the \ac{TNTI}, each plane in the spanwise direction of the \ac{DNS}, which is periodic and homogeneous, is analysed independently. This procedure also makes the methodology applicable to planar \ac{PIV} data, where only statistically independent streamwise--wall-normal velocity fields are available. For each plane, a sliding window of size $1\delta \times 2\delta$ is defined and moved downstream, as illustrated in \fref{fig:TNTI_identification_fig_a}. The boundary-layer thickness in the window size corresponds to the value at the window centre, so the window grows as it progresses downstream. Since the thickness of the \ac{TNTI} scales with $\delta$, this scaling maintains a consistent proportion of turbulent and non-turbulent fluid throughout. A window height of $2\delta$ ensures that the entire interface is captured together with a sufficiently large irrotational region.
+
+Within each sliding window, the histogram of instantaneous streamwise velocity is computed, as shown in \fref{fig:TNTI_identification_fig_b}. Distinct peaks in the histogram correspond to modal velocities of the \acp{UMZ}, while the local minima represent the edges between them. A clear peak is associated with the freestream velocity. The local minimum separating this peak from the turbulent region is identified as the edge velocity $u_{edge}$, and the corresponding velocity iso-contour defines the \ac{TNTI} in the window. As the window moves downstream, new $u_{edge}$ values are determined and the TNTI location updated sequentially. The contour may contain turbulent pockets in the irrotational flow and non-turbulent pockets inside the turbulent region; these closed boundaries are removed before further analysis \cite{sun2025arXiv}.
+
+An example of the identified \ac{TNTI} is shown in \fref{fig:TNTI_identification_fig_c}. The interface is highly convoluted, with its height varying considerably across the $2\delta$ domain and sometimes extending beyond the local boundary-layer thickness. In some locations the TNTI folds back onto itself, producing multiple interface positions at the same streamwise coordinate. For statistical analysis, the lower envelope of the interface is taken as the interface height $y_{i}$, as indicated by the red dashed line in \fref{fig:TNTI_identification_fig_c}.
+
+
+\textcolor{Reviewer1Color}{A similar velocity-contour approach was recently employed by \citet{Asadi2025} to locate the outer boundary of turbulence. However, in their formulation, a single global edge-velocity threshold was applied uniformly along the streamwise direction, independent of the local \ac{UMZ} structure. In contrast, the present method determines the interface velocity locally from the \ac{UMZ} distribution in each instantaneous velocity field, allowing $u_{edge}$ to vary with streamwise position. This distinction is particularly important in spatially developing flows, where the characteristic velocity of the outer \ac{UMZ} changes with streamwise distance. Consequently, the present formulation generalises the \citet{Asadi2025} approach to account for streamwise variability, enabling consistent TNTI detection in extended domains.}
+
+\begin{figure}[!htbp]
+
+\begin{tabular}{ccc}
+\begin{subfigure}{0.32\textwidth}
+\includegraphics[width=\textwidth]{TNTI_detection_fig_a.pdf} 
+\caption{}
+\label{fig:TNTI_identification_fig_a}
+\end{subfigure}
+
+\begin{subfigure}{0.32\textwidth}
+\includegraphics[width=\textwidth]{TNTI_detection_fig_b.pdf} 
+\caption{}
+\label{fig:TNTI_identification_fig_b}
+\end{subfigure} 
+
+\begin{subfigure}{0.32\textwidth}
+\includegraphics[width=\textwidth]{TNTI_detection_fig_c.pdf} 
+\caption{}
+\label{fig:TNTI_identification_fig_c}
+\end{subfigure}
+
+\end{tabular}
+\caption{ (a) The contour plot of an example streamwise velocity field. The red rectangle marks the sliding window at $x=0$. (b) Histogram of the velocity within the sliding window shown in (a). This histogram is clipped to a maximum frequency of 0.05. The peak representing the freestream velocity reads 0.33 and is not shown in the figure. The red vertical line marks the position of the first point of the local minimum from the freestream velocity, which is $u_{edge}$. (c) The identified \ac{TNTI} (\textcolor{blue}{\line}) and interface height ($y_{i}$, \textcolor{red}{\dashed}) overlayed on the instantaneous streamwise velocity contour. Insert: magnified plot within the black dashed square. In all the plots, $\delta^*$ refers to the boundary layer thickness at the centre of the domain.}
+\label{fig:TNTI_identification_fig}
+\end{figure}
+
+\FloatBarrier
+\section{Geometric properties of the TNTI}
+\label{sec:geographic_properties}
+
+Although the presented methodology can be applied to the entire velocity field, the analysis presented in this paper is limited to three streamwise stations to isolate and study the effect of Reynolds number on the \ac{TNTI} properties. Each station contains the full domain in the $z$ and $y$ directions, and the extents in the $x$ direction are summarised in \tref{tbl:station_extends}.
+
+\begin{table}[ht!]
+  \centering
+  \caption{Streamwise extents of the analysis domains. 
+  Each station includes the full extent in $y$ and $z$ directions.  
+  Starred quantities ($\cdot^*$) denote values evaluated at the centre of the corresponding streamwise station.}
+  \label{tbl:station_extends}
+  \begin{tabular}{cccc}
+    \toprule
+    Station & $Re_\tau^*$ & $Re_\theta^*$ & $L_x/\delta^*$ \\
+    \midrule
+    1 & 1,045 & 3,054 & 3 \\
+    2 & 1,430 & 4,521 & 3 \\
+    3 & 1,965 & 6,446 & 3 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+
+The mean TNTI height and the standard deviation of the TNTI height were compared with previously published results in \tref{tbl:TNTI_stat_compare}. \Tref{tbl:TNTI_stat_compare} shows a wide range of mean TNTI heights and standard deviations reported from the existing literature, which do not show a strong Reynolds number dependency. The results by Jiménez et al. \cite{Jimenez2010} and Eisma et al. \cite{Eisma2015} have higher mean TNTI heights because a threshold in vorticity is used to identify the interface. Excluding these two results, $\overline{y_{i}} / \delta$ and $\sigma\left(y_i\right) / \delta$ obtained in this study are comparable with values reported in the literature.
+
+
+\begin{table}[ht!]
+  \centering
+  \caption{Comparison of mean position and standard deviation of the TNTI with existing literature.}
+  \label{tbl:TNTI_stat_compare}
+  \begin{tabular}{lcccc}
+    \toprule
+    Study & $Re_\tau$ & $\overline{y_i}/\delta$ & $\sigma(y_i)/\delta$ & $\sigma(y_i)/\overline{y_i}$ \\
+    \midrule
+    Jiménez et al.\ (2010) \cite{Jimenez2010}         & 692     & 0.92 & 0.10 & 0.11 \\
+    Chen and Blackwelder\ (1978) \cite{Chen1978}            & 1,190   & 0.82 & 0.13 & 0.16 \\
+    Kovasznay \cite{Kovasznay1970}       & 1,240   & 0.78 & 0.14 & 0.18 \\
+    Corrsin and Kistler \cite{Corrsin1955}         & $<2,000$& 0.80 & 0.16 & 0.20 \\
+    Eisma et al.\cite{Eisma2015}           & 2,053   & 0.90 & 0.18 & 0.20 \\
+    Hedley and Keffer \cite{Hedley1974}          & 5,100   & 0.75 & 0.24 & 0.32 \\
+    Chauhan et al.\cite{Chauhan2014}         & 14,500  & 0.82 & 0.13 & 0.17 \\
+    Current study, station 1       & 1,045   & 0.74 & 0.17 & 0.23 \\
+    Current study, station 2       & 1,430   & 0.75 & 0.16 & 0.21 \\
+    Current study, station 3       & 1,965   & 0.77 & 0.16 & 0.21 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+
+%The \ac{PDF}s of the instantaneous \ac{TNTI} height $y_i$, normalised by the local boundary layer thickness, are plotted in \fref{fig:TNTI_geometics_fig_a} for three stations. The \ac{PDF}s are calculated by combining all the data points within each station. Although the distribution of $u_{edge}$ is negatively skewed, the \ac{PDF} of the normalised interface height exhibits a normal distribution for all three stations. \Fref{fig:TNTI_geometics_fig_b} shows the intermittency profile of the \ac{TNTI}. Intermittency refers to the proportion of time for which the velocity is turbulent at a given location\cite{Corrsin1943}. In this paper, the intermittency profiles were calculated by assigning the instantaneous turbulent region a value of one and the non-turbulent region a value of zero, then averaging across the $x$ and $z$ directions as well as statistically independent samples. The intermittency profile is also equivalent to the \ac{CDF} of $y_i$. Since $y_i$ follows a normal distribution, the intermittency profiles take the form of error functions. Again, the intermittency profiles from the three stations are very similar to each other. The intermittency profile also shows that the TNTI location varies a lot within the turbulent boundary layer, with 2\% of the time higher than the boundary layer thickness and about 2\% of the time lower than half boundary layer height. 
+
+The \acp{PDF} of the instantaneous \ac{TNTI} height, $y_i$, normalized by the local boundary layer thickness, are shown in \fref{fig:TNTI_geometics_fig_a} for three streamwise stations. Each \ac{PDF} is computed by aggregating all data points within the corresponding station. Although the distribution of $u_{edge}$ is negatively skewed, the \acp{PDF} of the normalized interface height exhibit a nearly Gaussian distribution across all stations. 
+
+
+\Fref{fig:TNTI_geometics_fig_b} presents the intermittency profiles of the \ac{TNTI}. Intermittency is defined as the proportion of time that the velocity at a given location is classified as turbulent~\cite{Corrsin1943}. In this study, the intermittency is computed by assigning a value of one to turbulent regions and zero to non-turbulent regions, followed by averaging over the $x$ and $z$ directions and across statistically independent samples. 
+
+The intermittency profiles presented in \fref{fig:TNTI_geometics_fig_b} also correspond to the cumulative distribution functions (CDFs) of the interface height, $y_i$. Since $y_i$ is approximately normally distributed, as shown in \fref{fig:TNTI_geometics_fig_a}, the CDFs resemble error functions. The profiles at all three stations are closely aligned, suggesting consistent statistical behaviour of the \ac{TNTI} along the streamwise direction. Moreover, the intermittency remains finite both at the boundary-layer edge ($y_i/\delta=1$) and at mid-height ($y_i/\delta=0.5$), highlighting the strong variability of the interface. This behaviour agrees with the experimental findings of Chauhan et al.\ \cite{Chauhan2014}, who reported comparable intermittency trends using a TKE-based method, despite differences in dataset and scaling.
+
+
+
+
+
+\begin{figure}[!htbp]
+\centering
+\begin{tabular}{cc}
+\begin{subfigure}{0.39\textwidth}
+\includegraphics[width=\textwidth]{TNTI_geometics_fig_a.pdf} 
+\caption{}
+\label{fig:TNTI_geometics_fig_a}
+\end{subfigure}
+
+\begin{subfigure}{0.39\textwidth}
+\includegraphics[width=\textwidth]{TNTI_geometics_fig_b.pdf} 
+\caption{}
+\label{fig:TNTI_geometics_fig_b}
+\end{subfigure}
+\end{tabular}
+\caption{ (a) Disribution of the \ac{TNTI} height normalised by mean interface height and standard deviation. (b) The intermittency profiles of the interface. \dashed, standard normal distribution;  \textcolor{plt1}{\line} Station 1, \textcolor{plt2}{\line} Station 2,  \textcolor{plt3}{\line} Station 3.}
+\label{fig:TNTI_geometics_fig}
+\end{figure}
+\FloatBarrier
+\section{Conditionally averaged turbulent statistics about the interface}
+\label{sec:Conditional_turbulent_statistics}
+
+The conditional turbulent statistics are computed following the procedure outlined below. For each $(x, z)$ location, the instantaneous velocity and vorticity fields are interpolated onto a grid $\tilde{y}$ originating at the local interface. The grid spacing is chosen to match the mean spacing of $y$ at the average \ac{TNTI} height and extends from $-0.1\delta$ to $0.1\delta$. The coordinate $\tilde{y}$ has the same positive direction as $y$, such that negative values correspond to the turbulent region below the \ac{TNTI} and positive values correspond to the non-turbulent region above it. An ensemble average of the interpolated fields then yields the conditional mean streamwise and wall-normal velocities ($\tilde{U}$, $\tilde{V}$), Reynolds stresses ($\tilde{\overline{u'u'}}$, $\tilde{\overline{v'v'}}$, $\tilde{\overline{w'w'}}$, $\tilde{\overline{u'v'}}$), mean spanwise vorticity ($\tilde{\Omega}_z$), and vorticity fluctuation components ($\tilde{\overline{\omega_x \omega_x}}$, $\tilde{\overline{\omega_y \omega_y}}$, $\tilde{\overline{\omega_z \omega_z}}$).
+
+\textcolor{Reviewer1Color}{Conditional statistics are evaluated with respect to the wall-normal coordinate, which closely approximates the local interface-normal direction. This approximation is justified because the \ac{TNTI} is, on average, nearly parallel to the wall and varies only gradually in the streamwise direction. The alignment between the wall-normal and interface-normal directions was verified by computing the probability density function (PDF) of the cosine of the angle between the two vectors, which is strongly peaked near unity (figure~\ref{fig:cosine_pdf}). This result confirms that the two directions are nearly coincident, and therefore using the wall-normal coordinate introduces negligible error in the conditional statistics.}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.33\textwidth]{interface_angle_pdf.pdf}
+  \caption{Probability density function of the cosine of the angle between the interface-normal and wall-normal directions. A value of 1 indicates that the interface is parallel to the wall and facing upward.}
+  \label{fig:cosine_pdf}
+\end{figure}
+
+
+
+\subsection{Conditionally averaged mean velocity profiles}
+\label{sec:Conditioned_mean_velocity_profiles}
+Conditionally averaged mean streamwise velocities are plotted in \Fref{fig:mean_u}. For the mean streamwise velocity, the profiles obtained using both the local TKE method and the UMZ-TNTI method exhibit a narrow region of sharp velocity increase, with the position of the largest gradient located close to the interface. In contrast, the profile from the vorticity-threshold method shows a monotonic increase below the interface and remains nearly constant above it. Because the \ac{TNTI} lies in the wake region of the turbulent boundary layer, where the outer velocity-deficit scaling applies, \Fref{fig:mean_u} presents the $\tilde{U}$ profiles in deficit form. The figure shows that the profile obtained with the local TKE method achieves the best collapse across Reynolds numbers, while the other two methods display greater spread. 
+
+$\tilde{V}$ profiles resulting from the three \ac{TNTI} identification methods are shown in \Fref{fig:mean_v}. A sharp decrease in $\tilde{V}$ appears in the profiles identified by the local TKE method and the UMZ-TNTI method. Compared with $\tilde{U}$, the region of sharp decrease is wider, and the profiles level off at approximately $\pm0.05\delta$. The $\tilde{V}$ profiles from the vorticity-threshold method remain relatively constant across the \ac{TNTI}, with a maximum velocity of less than $0.05u_\tau$. For all profiles, $\tilde{V}$ at the interface is roughly an order of magnitude smaller than $\tilde{U}$. The sharp velocity gradients near the interface observed in the TKE- and UMZ-based profiles are consistent with the experimental results of Chauhan et al.\ \cite{Chauhan2014}, who reported a similarly narrow region of rapid change in streamwise velocity. \textcolor{Reviewer1Color}{ It is worth noting that the mean entrainment mass flux does not depend solely on the wall-normal velocity at the TNTI but also on the streamwise evolution of the interface height. The mean entrainment mass flux can be expressed as
+\begin{equation}
+\frac{\mathrm{d} \dot{M}}{\mathrm{d} x}
+ = \rho \left[\tilde{U} \frac{\mathrm{d} y_{\mathrm{i}}}{\mathrm{d} x} - \tilde{V}\right],
+\end{equation}
+where $\tilde{U}$ and $\tilde{V}$ are the local mean velocities at the interface. Thus, a net entrainment can occur even when the mean wall-normal velocity at the TNTI is positive.}
+
+
+
+
+
+\begin{figure}[!htbp]
+\captionsetup[subfigure]{aboveskip=-1pt,belowskip=-1pt}
+\centering
+\begin{tabular}{cc}
+\begin{subfigure}{0.33\textwidth}
+\includegraphics[width=\textwidth]{cond_stats_mean_vel_um.pdf} 
+\caption{}
+\label{fig:mean_u}
+\end{subfigure}
+
+\begin{subfigure}{0.33\textwidth}
+\includegraphics[width=\textwidth]{cond_stats_mean_vel_vm.pdf} 
+\caption{}
+\label{fig:mean_v}
+\end{subfigure}
+\end{tabular}
+\vspace{-1.5em}
+\caption{Conditionally averaged mean velocities with respect to the \ac{TNTI}: (a) Streamwise velocity, $\tilde{U}$; (b) Wall-normal velocity, $\tilde{V}$.  \textcolor{plt1}{\line}  UMZ-TNTI method, \textcolor{plt2}{\line} Local TKE method using 2C definition of $\tilde{k}$, \textcolor{plt4}{\line} Vorticity threshold method, \dotdash Station 1, \dashed Station 2, \line Station 3. $\times$ marks the position of the largest $\tilde{U}$ gradient in (a).}
+
+\label{fig:cond_stat_mean}
+\end{figure}
+
+The conditionally averaged mean velocity profiles indicate that the flow within the \ac{TNTI}, as identified by the UMZ-TNTI method and the local TKE method, behaves like a mixing layer with approximately linear velocity variation on either side of the interface. This behaviour implies characteristic velocity, length, and vorticity scales within the interface, as illustrated in \Fref{fig:TNTI_schematics}. The mean streamwise velocity change across the interface, $D[\tilde{U}]$, is obtained by extrapolating the linear velocity profiles above and below the interface to $\tilde{y}=0$, and then taking the difference between the interpolated values. From $D[\tilde{U}]$ and the maximum velocity gradient within the interface, $\frac{d \tilde{U}}{d\tilde{y}}|_{\mbox{\small{max}}}$, the vorticity thickness of the \ac{TNTI}$, \delta_w$, is defined as
+
+\begin{equation}
+\delta_w = \frac{D[\tilde{U}]}{\frac{d \tilde{U}}{d\tilde{y}}|_{\mbox{\small{max}}}}.
+\end{equation}
+
+
+
+\begin{figure}[!htbp]
+\centering
+\begin{tabular}{ccc}
+\begin{subfigure}{0.37\textwidth}
+\includegraphics[width=\textwidth]{cond_stats_mean_vel_schematics.pdf} 
+\caption{}
+\label{fig:TNTI_schematics}
+\end{subfigure}
+
+\begin{subfigure}{0.31\textwidth}
+
+\includegraphics[width=\textwidth]{cond_stats_mean_vel_DU_ut.pdf} 
+\caption{}
+\label{fig:DU}
+\end{subfigure}
+
+\begin{subfigure}{0.31\textwidth}
+
+\includegraphics[width=\textwidth]{cond_stats_mean_vel_dudy_max.pdf} 
+\caption{}
+\label{fig:dUdy_max}
+\end{subfigure}
+\end{tabular}
+
+
+\caption{ (a) Velocity, vorticity and length scales identified from the $\tilde{U}$ profile: difference in mean streamwise velocity across the interface ($D[\tilde{U}]$), maximum mean velocity gradient ($\frac{d \tilde{U}}{d\tilde{y}}|_{\mbox{\small{max}}}$), and interface thickness ($\delta_w$). (b) The velocity jump across the TNTI, $D[\tilde{U}]$, normalised by the viscous velocity. (c) The maximum velocity gradient within the TNTI, $\frac{d \tilde{U}}{d\tilde{y}}|_{\mbox{\small{max}}}$, normalised by $\frac{u_\tau}{\delta}$. \textcolor{plt1}{$\bullet$} UMZ-TNTI method, \textcolor{plt2}{$\bullet$} Local TKE method. Faint coloured lines represent the averaged $D[\tilde{U}]/u_\tau$ for the same method and different Reynolds numbers. }
+
+\end{figure}
+
+\Fref{fig:DU} presents the $D[\tilde{U}]$ values obtained using the UMZ-TNTI method and the local TKE method for the three stations studied. The results show that $D[\tilde{U}]$ scales consistently with $u_\tau$ for both methods across the Reynolds numbers considered. In addition, the velocity jump identified by the UMZ-TNTI method is approximately 50\% larger than that from the local TKE method, indicating that this property of the TNTI is more pronounced when identified by the UMZ-TNTI method. \Fref{fig:dUdy_max} shows that $\frac{\delta}{u_\tau}\frac{d \tilde{U}}{d \tilde{y}}|_{\mbox{\small{max}}}$ exhibits a linear relationship with $Re_\tau$ for both methods across the Reynolds number range. The normalised maximum gradient identified by the UMZ-TNTI method is about 50\% greater than that from the local TKE method, suggesting that the flow undergoes a sharper change within the interface.
+
+The analysis of the conditionally averaged mean streamwise velocity indicates that the TNTI identified by the UMZ-TNTI method and the local TKE method has a similar thickness, but the velocity difference is 50\% larger with the UMZ-TNTI method. Consequently, the maximum velocity gradient is also 50\% larger. This enhanced velocity jump agrees with the conceptual model of the TNTI, where the mean streamwise velocity increases rapidly across the interface over a small distance. This analysis also identifies $D[\tilde{U}]$ as the appropriate velocity scale and $\delta_\omega$ as the relevant length scale for characterising the flow within the TNTI. By contrast, as no velocity jump is observed in the $\tilde{U}$ profiles obtained using the vorticity-threshold method, these velocity and length scales are not applicable to that definition of the TNTI.
+
+The $\tilde{U}$ and $\tilde{V}$ profiles are replotted using $D[\tilde{U}]$ and $\delta_\omega$ scaling in \Fref{fig:cond_stat_mean_DU}. The $\tilde{U}$ profiles in \Fref{fig:mean_u_DU} show excellent collapse between the UMZ-TNTI method and the local TKE method across all Reynolds numbers considered. The collapse is observed not only within the interface but also above it, up to two interface thicknesses. The $\tilde{V}$ profiles in \Fref{fig:mean_v_DU} collapse across Reynolds numbers for each method, but there is a small offset of approximately $0.05D[\tilde{U}]$ between the collapsed profiles identified by the UMZ-TNTI method and the local TKE method.
+
+
+\begin{figure}[!htbp]
+\captionsetup[subfigure]{aboveskip=-1pt,belowskip=-1pt}
+\centering
+\begin{tabular}{cc}
+\begin{subfigure}{0.33\textwidth}
+\includegraphics[width=\textwidth]{cond_stats_mean_vel_um_DU.pdf} 
+\caption{}
+\label{fig:mean_u_DU}
+\end{subfigure}
+
+\begin{subfigure}{0.33\textwidth}
+\includegraphics[width=\textwidth]{cond_stats_mean_vel_vm_DU.pdf} 
+\caption{}
+\label{fig:mean_v_DU}
+\end{subfigure}
+\end{tabular}
+\vspace{-1.5em}
+\caption{ Conditionally averaged mean velocities with respect to the \ac{TNTI}, scaled by velocity and length scales of the TNTI (a) Streamwise velocity, $(\tilde{U}-U_\infty)/D[\tilde{U}]$ (b) Wall normal velocity, $\tilde{V}/D[\tilde{U}]$. \textcolor{plt1}{\line}  UMZ-TNTI method, \textcolor{plt2}{\line} Local TKE method using 2C definition of $\tilde{k}$, \dotdash Station 1, \dashed Station 2, \line Station 3; Gray dashed lines mark the boundaries of the TNTI ($\pm 0.5 \delta_\omega$). }
+\label{fig:cond_stat_mean_DU}
+\end{figure}
+
+\FloatBarrier
+\subsection{Conditionally averaged Reynolds stress profiles}
+In this section, conditionally averaged Reynolds stress profiles are presented and discussed. Following the approach established in the previous section, $D[\tilde{U}]$ is used as the velocity scale for the flow around the TNTI, and the Reynolds stresses are therefore normalised by $D[\tilde{U}]^2$. Because no velocity jump is observed across the interface identified using the vorticity-threshold method, the scales $D[\tilde{U}]$ and $\delta_\omega$ are not applicable, and results from this method are not included.
+
+
+
+%%%Figure moved so it is closer to the discussion
+\begin{figure}[!htbp]
+\captionsetup[subfigure]{aboveskip=-1pt,belowskip=-1pt}
+\centering
+\begin{tabular}{cc}
+\begin{subfigure}{0.4\textwidth}
+\includegraphics[width=\textwidth]{cond_stats_Re_stress_uu.pdf} 
+\caption{}
+\label{fig:uu}
+\end{subfigure}
+\begin{subfigure}{0.4\textwidth}
+\includegraphics[width=\textwidth]{cond_stats_Re_stress_vv.pdf} 
+\caption{}
+\label{fig:vv}
+\end{subfigure}
+\\
+\begin{subfigure}{0.4\textwidth}
+\includegraphics[width=\textwidth]{cond_stats_Re_stress_ww.pdf} 
+\caption{}
+\label{fig:ww}
+\end{subfigure}
+\begin{subfigure}{0.42\textwidth}
+\includegraphics[width=\textwidth]{cond_stats_Re_stress_uv.pdf} 
+\caption{}
+\label{fig:uv}
+\end{subfigure}
+\end{tabular}
+\vspace{-1.5em}
+\caption{ Conditionally averaged Reynolds stress profiles, (a) $\tilde{\overline{u'u'}}$, (b) $\tilde{\overline{v'v'}}$, (c) $\tilde{\overline{w'w'}}$ and (d) $\tilde{\overline{u'v'}}$.   \textcolor{plt1}{\line}  UMZ-TNTI method, \textcolor{plt2}{\line} Local TKE method, \dotdash Station 1, \dashed Station 2, \line Station 3.}
+
+\end{figure}
+
+The streamwise Reynolds stress, $\tilde{\overline{u'u'}}$, is shown in \Fref{fig:uu}. 
+A direct comparison of the local TKE and UMZ-TNTI methods demonstrates good agreement across the Reynolds numbers considered. 
+Above the TNTI, the normalised fluctuation $\tilde{\overline{u'u'}}/D[\tilde{U}]^2$ is markedly smaller than below, consistent with the TNTI separating the turbulent region of high fluctuation from the non-turbulent region. 
+At $\tilde{y}=0$, the profile represents the fluctuation along the interface itself, which in the case of the UMZ-TNTI method equals $\sigma_{u_{edge}}^2$. 
+Despite the different identification approaches, both methods yield similar scaling with $D[\tilde{U}]^2$, and the fluctuation along the interface remains lower than in the turbulent side. 
+
+The wall-normal stress profiles, $\tilde{\overline{v'v'}}$, are shown in \Fref{fig:vv}. 
+As seen in the figure, both the UMZ-TNTI and local TKE methods collapse the data across Reynolds numbers, although the UMZ-TNTI values are systematically larger. 
+Compared with $\tilde{\overline{u'u'}}$, the change across the TNTI is more gradual, suggesting that the interface has a stronger influence on streamwise than wall-normal fluctuations. 
+
+The spanwise stress, $\tilde{\overline{w'w'}}$, is plotted in \Fref{fig:ww}. 
+The profiles exhibit similar behaviour above, within, and below the TNTI, with no sharp transitions. 
+Taken together, the three normal stresses show that the TNTI reduces fluctuations anisotropically, the streamwise component experiences the strongest attenuation, the wall-normal component a moderate reduction, and the spanwise component only a minor change. 
+It is also noteworthy that spanwise stresses collapse poorly with $D[\tilde{U}]^2$ for the local TKE method but improve with the UMZ-TNTI method, highlighting the latter’s ability to capture fluctuation dynamics consistently across directions. 
+
+The Reynolds shear stress, $\tilde{\overline{u'v'}}$, shown in \Fref{fig:uv}, reveals a strong contrast across the interface, in line with the behaviour of $\tilde{\overline{u'u'}}$. 
+The shear stress undergoes a sign reversal, being negative within the turbulent region and positive outside. 
+Both methods capture this transition, though the UMZ-TNTI profiles exhibit slightly larger magnitudes, suggesting that this method more clearly identifies the shear-layer-like character of the interface. 
+
+
+\FloatBarrier
+\subsection{Conditioned mean vorticity profiles}
+
+In this section, conditionally averaged mean and fluctuating vorticity profiles are examined. As noted earlier, the TNTI-related length and vorticity scales are based on shear flow–like behaviour, which is not applicable to the TNTI identified using the vorticity-threshold method. A quantitative comparison with the UMZ-TNTI and local TKE methods is therefore not possible. 
+
+The conditionally averaged mean spanwise vorticity profiles, $|\tilde{\Omega_z}|$, are presented in \Fref{fig:vortz_m}. For both the local TKE and UMZ-TNTI methods, spanwise vorticity is concentrated within the interface thickness, with the UMZ-TNTI method showing better collapse across Reynolds numbers than the local TKE method. The peak value of the normalised vorticity is approximately 1.1, indicating that the majority of the mean spanwise vorticity originates from the steep gradient of $\tilde{U}$ across the interface. This supports the assumption that the velocity field within the TNTI varies slowly in the streamwise direction, leading to a negligible streamwise gradient. By contrast, the $|\tilde{\Omega_z}|$ profiles obtained using the vorticity-threshold method show vorticity concentrated below the TNTI rather than within it. This outcome is expected, as the imposed threshold separates the turbulent region, characterised by high vorticity, from the surrounding low-vorticity region.
+
+
+
+
+\begin{figure}[!htbp]
+\captionsetup[subfigure]{aboveskip=-1pt,belowskip=-1pt}
+\centering
+\includegraphics[width=0.4\textwidth]{cond_stats_mean_vort_vortz_m.pdf} 
+\label{fig:vortz_m_UMZ_TKE}
+\caption{ Conditionally averaged mean spanwise vorticity profiles, $|\tilde{\Omega_z}|$ obtained using the local TKE method and the UMZ–TNTI method. \textcolor{plt1}{\line}  UMZ-TNTI method, \textcolor{plt2}{\line} Local TKE method, \dotdash Station 1, \dashed Station 2, \line Station 3.}
+\label{fig:vortz_m}
+\end{figure}
+
+
+
+
+The vorticity fluctuation profiles are presented in \Fref{fig:w_fluc}. The figure shows that the vorticity fluctuation profiles also collapse better across different Reynolds number for the UMZ-TNTI method than local TKE method. In addition, the TNTI alter the vorticity fluctuation profiles differently for different directions. The streamwise vorticity fluctuation, $\tilde{\overline{\omega_x'\omega_x'}}$, shows a sharp decrease within the interface, while the vorticity fluctuations in the spanwise and wall-normal directions, $\tilde{\overline{\omega_y'\omega_y'}}$ and $\tilde{\overline{\omega_z'\omega_z'}}$, exhibit a localised peak just below the interface in the turbulent region. The effect of the TNTI on the vorticity fluctuation profiles is more pronounced in the profiles produced by the UMZ-TNTI method, suggesting that the UMZ-TNTI method captures this effect better than the local TKE method. 
+
+%%%Figure moved so it is closer to the discussion
+\begin{figure}[t]
+\captionsetup[subfigure]{aboveskip=-1pt,belowskip=-1pt}
+\centering
+\begin{tabular}{cc}
+\begin{subfigure}{0.4\textwidth}
+\includegraphics[width=\textwidth]{cond_stats_vort_fluc_vortx_vortx.pdf} 
+\caption{}
+\label{fig:wxwx}
+\end{subfigure}
+\begin{subfigure}{0.4\textwidth}
+\includegraphics[width=\textwidth]{cond_stats_vort_fluc_vorty_vorty.pdf} 
+\caption{}
+\label{fig:wywy}
+\end{subfigure}
+\end{tabular}
+\begin{subfigure}{0.4\textwidth}
+\includegraphics[width=\textwidth]{cond_stats_vort_fluc_vortz_vortz.pdf} 
+\caption{}
+\label{fig:wzwz}
+\end{subfigure}
+\vspace{-1.5em}
+\caption{ Conditionally averaged Reynolds stress profiles, (a) $\tilde{\overline{u'u'}}$, (b) $\tilde{\overline{v'v'}}$, (c) $\tilde{\overline{w'w'}}$ and (d) $\tilde{\overline{u'v'}}$.   \textcolor{plt1}{\line}  UMZ-TNTI method, \textcolor{plt2}{\line} Local TKE method, \dotdash Station 1, \dashed Station 2, \line Station 3.}
+\label{fig:w_fluc}
+\end{figure}
+
+
+\section{Conclusion}
+
+This paper introduced a threshold-free methodology for identifying the turbulent/non-turbulent interface (TNTI) in turbulent boundary layers using the uniform momentum zone (UMZ) concept. By calculating the probability density function of streamwise velocity within a sliding window, the outermost UMZ boundary was identified as the TNTI without recourse to arbitrary thresholds. This approach provides a consistent and objective definition applicable across datasets and Reynolds numbers. 
+
+
+The geometric properties of the identified TNTI are analysed, focusing on the probability density function of the interface height, the intermittency profile, and the mean and standard deviation of the interface height. The study reveals that the TNTI scales well with the local boundary layer thickness and shows only minor variations across the Reynolds number range from $Re_\tau = 1,000$ to $2,000$. 
+
+The conditional turbulent statistics based on the TNTI height are calculated and shown. The mean streamwise velocity profile exhibits high shear within the TNTI, which is characteristic of mixing layer behaviour, and suggests velocity and length scales local to the TNTI. The velocity fluctuation profiles reveal varying effects across different directions, with $\tilde{\overline{u'u'}}$ showing large differences, $\tilde{\overline{v'v'}}$ showing smaller differences, and $\tilde{\overline{w'w'}}$ showing negligible effects. Both mean and fluctuating vorticity profiles show better collapse for the UMZ-TNTI method than the local TKE method. The mean spanwise vorticity concentrates within the TNTI identified by the UMZ-TNTI method, reinforcing its mixing-layer-like behaviour. Streamwise vorticity fluctuation decreases across the interface, while vorticity fluctuations in the other directions exhibit localised peaks within the interface.
+
+Although the local TKE method remains useful for identifying envelopes of elevated turbulence intensity, the UMZ-TNTI method more sharply isolates the interfacial region where the most significant velocity and vorticity gradients occur. This renders it a better diagnostic tool for entrainment and mixing-layer studies, particularly in high-resolution PIV where TKE estimates are limited by spatial resolution and noise.
+
+% If you want to use bibtex:
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+
+\end{document}
+
+
+
+
