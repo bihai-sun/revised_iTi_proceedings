@@ -2,7 +2,7 @@
 \usepackage{booktabs}
 \usepackage[numbers]{natbib}
 \usepackage{xcolor}
-\definecolor{Reviewer1Color}{RGB}{255,0,0}
+\definecolor{Reviewer1Color}{RGB}{0,0,0}
 
 
 \input{LATEX_headers.tex} %personal headers include definition of Acronyms, colors and symbols for figure caption
@@ -25,7 +25,7 @@ The turbulent/non-turbulent interface (TNTI) is essential in the entrainment and
 
 \Acp{TBL} involve a continuous exchange of momentum and scalar quantities between the near-wall turbulent region and the free stream. This transfer occurs across the \ac{TNTI}, which is a thin, convoluted layer of intense vorticity and shear \cite{daSilva2014}. The \ac{TNTI} plays a fundamental role in turbulent entrainment, but its detection is challenging because of strong intermittency and complex geometry.
 
-\textcolor{Reviewer1Color}{A variety of definitions for the \ac{TNTI} have been proposed in the literature, and no single criterion is universally accepted. In addition to the commonly used vorticity- or enstrophy-based thresholds \citep{Westerweel_2005,Westerweel2009,daSilva2014}, alternative formulations include passive scalar criteria \citep{Prasad_1989,Holzner_2006,Mistry_2016}, local turbulent kinetic energy (TKE) thresholds \citep{Chauhan2014,deSilva2016,Saxton_Fox_2017,Reuther_2018}, and more recent data-driven approaches that combine multiple physical quantities \citep{Wu_2019,Younes_2021,Khojasteh_2024}. 
+\textcolor{Reviewer1Color}{A variety of definitions for the \ac{TNTI} have been proposed in the literature, and no single criterion is universally accepted. In addition to the commonly used vorticity- or enstrophy-based thresholds \citep{Westerweel_2005,Westerweel2009,daSilva2014}, alternative formulations include passive scalar criteria \citep{Prasad_1989,Holzner_2006,Mistry_2016}, local turbulent kinetic energy (TKE) thresholds \citep{Chauhan2014,deSilva2016,Saxton_Fox_2017,Reuther_2018}, and more recent machine-learning approaches that combine multiple physical quantities \citep{Wu_2019,Younes_2021,Khojasteh_2024}. 
 These methods have advanced understanding of TNTI dynamics but face two main limitations: the chosen threshold is often arbitrary and can strongly influence the outcome, and experimental applicability is restricted by spatial resolution and measurement noise. Such difficulties complicate comparisons across studies and reduce the reliability of purely threshold-based definitions \cite{Anand2009}.}
 
 In parallel, the study of \acp{UMZ} has provided new insight into the large-scale organisation of turbulent boundary layers \cite{Adrian2000}. UMZ boundaries can be detected from peaks in streamwise-velocity \acp{PDF}, and they exhibit velocity jumps reminiscent of those observed across the \ac{TNTI} \cite{Thavamani2020}. This conceptual similarity motivates the use of UMZs to identify the TNTI without reliance on empirical thresholds.
@@ -181,7 +181,7 @@ The conditional turbulent statistics are computed following the procedure outlin
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.33\textwidth]{interface_angle_pdf.pdf}
+  \includegraphics[width=0.6\textwidth]{interface_angle_pdf.pdf}
   \caption{Probability density function of the cosine of the angle between the interface-normal and wall-normal directions. A value of 1 indicates that the interface is parallel to the wall and facing upward.}
   \label{fig:cosine_pdf}
 \end{figure}
@@ -273,13 +273,13 @@ The $\tilde{U}$ and $\tilde{V}$ profiles are replotted using $D[\tilde{U}]$ and 
 \captionsetup[subfigure]{aboveskip=-1pt,belowskip=-1pt}
 \centering
 \begin{tabular}{cc}
-\begin{subfigure}{0.33\textwidth}
+\begin{subfigure}{0.42\textwidth}
 \includegraphics[width=\textwidth]{cond_stats_mean_vel_um_DU.pdf} 
 \caption{}
 \label{fig:mean_u_DU}
 \end{subfigure}
 
-\begin{subfigure}{0.33\textwidth}
+\begin{subfigure}{0.42\textwidth}
 \includegraphics[width=\textwidth]{cond_stats_mean_vel_vm_DU.pdf} 
 \caption{}
 \label{fig:mean_v_DU}
@@ -398,7 +398,7 @@ The vorticity fluctuation profiles are presented in \Fref{fig:w_fluc}. The figur
 \label{fig:w_fluc}
 \end{figure}
 
-
+\FloatBarrier
 \section{Conclusion}
 
 This paper introduced a threshold-free methodology for identifying the turbulent/non-turbulent interface (TNTI) in turbulent boundary layers using the uniform momentum zone (UMZ) concept. By calculating the probability density function of streamwise velocity within a sliding window, the outermost UMZ boundary was identified as the TNTI without recourse to arbitrary thresholds. This approach provides a consistent and objective definition applicable across datasets and Reynolds numbers. 
