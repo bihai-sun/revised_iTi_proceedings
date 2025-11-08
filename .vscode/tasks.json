@@ -1,0 +1,51 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "LaTeX: Watch responseReviewer.tex",
+      "type": "shell",
+      "command": "latexmk",
+      "args": [
+        "-pdf",
+        "-pvc",
+        "-interaction=nonstopmode",
+        "-halt-on-error",
+        "-file-line-error",
+        "reply_to_reviewers/responseReviewer.tex"
+      ],
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "latex",
+        "pattern": {
+          "regexp": "^(.+):(\\d+): (.+)$",
+          "file": 1,
+          "line": 2,
+          "message": 3
+        }
+      }
+    },
+    {
+      "label": "LaTeX: Watch revised_iTi_paper.tex",
+      "type": "shell",
+      "command": "latexmk",
+      "args": [
+        "-pdf",
+        "-pvc",
+        "-interaction=nonstopmode",
+        "-halt-on-error",
+        "-file-line-error",
+        "revised_paper/revised_iTi_paper.tex"
+      ],
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "latex",
+        "pattern": {
+          "regexp": "^(.+):(\\d+): (.+)$",
+          "file": 1,
+          "line": 2,
+          "message": 3
+        }
+      }
+    }
+  ]
+}

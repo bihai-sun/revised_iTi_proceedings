@@ -1,1 +1,50 @@
+# LaTeX intermediate and auxiliary files
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.idx
+*.ilg
+*.ind
+*.glo
+*.gls
+*.glsdefs
+*.acn
+*.acr
+*.alg
+*.glg
+*.gls
+*.ist
+*.xdy
+*.xdv
+*.nav
+*.snm
+*.vrb
+
+# Latexmk intermediates
+*.dvi
+*.ps
+*.tmp
+
+# Editors/OS
+.DS_Store
+Thumbs.db
+
+# Keep VS Code tasks & settings tracked
+!.vscode/tasks.json
+!.vscode/settings.json
+
+# Keep PDFs tracked (uncomment to ignore all PDFs)
+# *.pdf
+
+# Generic build dirs
 **/build/*

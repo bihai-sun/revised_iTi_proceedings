@@ -1,0 +1,20 @@
+{
+  // Reduce noise from LaTeX build artefacts in file watcher
+  "files.watcherExclude": {
+    "**/*.aux": true,
+    "**/*.bbl": true,
+    "**/*.blg": true,
+    "**/*.fdb_latexmk": true,
+    "**/*.fls": true,
+    "**/*.log": true,
+    "**/*.out": true,
+    "**/*.synctex.gz": true,
+    "**/*.toc": true,
+    "**/*.lof": true,
+    "**/*.lot": true
+  },
+  // Optional LaTeX Workshop settings (if extension is installed)
+  "latex-workshop.latex.autoBuild.run": "onFileChange",
+  "latex-workshop.latex.outDir": "./",
+  "latex-workshop.view.pdf.viewer": "tab"
+}
