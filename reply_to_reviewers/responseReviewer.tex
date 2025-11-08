@@ -67,7 +67,12 @@ We thank the reviewer for this insightful comment. Strictly speaking, conditiona
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=4in]{interface_angle_pdf.pdf}
+  % Include the figure if available; otherwise show a placeholder box to avoid compile failure
+  \IfFileExists{interface_angle_pdf.pdf}{%
+    \includegraphics[width=4in]{interface_angle_pdf.pdf}%
+  }{%
+    \fbox{\parbox[b][2in][c]{4in}{\centering Figure placeholder: interface\_angle\_pdf.pdf not found}}%
+  }
   \caption{Probability density function of the cosine of the angle between the interface-normal and wall-normal directions. A value of 1 indicates the interface is parallel to the wall and facing upward.}
   \label{fig:cosine_pdf}
 \end{figure}
